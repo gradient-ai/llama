@@ -144,7 +144,7 @@ with gr.Blocks(css="#margin-top {margin-top: 15px} #center {text-align: center;}
     with gr.Row(elem_id="center"):
         gr.Markdown("# LLaMa Inference with Gradient")
     with gr.Row(elem_id = 'description'):
-        gr.Markdown(""" To run LLaMA, be sure to select a model size that works for your machine. Single GPUs should always use '7B'.\n Start typing below and then click **Run** to see the output.""")
+        gr.Markdown(""" To run LLaMA, be sure to select a model size that works for your machine. Single GPUs should always use '7B'.\n Start typing below and then click **Run to generate text** to see the output.""")
     with gr.Row():
         ckpt = gr.Radio(["7B", "13B", "30B", '65B'], label="Checkpoint directory", value = "30B", interactive = True)
         seed = gr.Slider(label = 'Seed', value = 42, minimum = 1, maximum = 10000, step =1, interactive = True)
