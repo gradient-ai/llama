@@ -32,18 +32,21 @@ If you are working in a Gradient Notebook, then these models have been uploaded 
 
 ## Inference
 
-The provided `example.py` can be run on a single or multi-gpu node with `torchrun` and will output completions for two pre-defined prompts. Using `TARGET_FOLDER` as defined in `download.sh`:
-
-```
-torchrun --nproc_per_node MP example.py --ckpt_dir $TARGET_FOLDER/$MODEL_SIZE --tokenizer_path $TARGET_FOLDER/tokenizer.model --prompt <your prompt> --seed 42
-```
-
 ## [Gradio App](https://gradio.app/)
 
 To run the Gradio Application, run the following in the terminal or using line magic. The MP values will automatically be connected. Note that multi-gpu machines are likely necessary to run 13B (x2), 30B (x4), and 65B (x8) models.
 
 ```
 python app.py
+```
+
+## Original script
+
+The provided `example.py` can be run on a single or multi-gpu node with `torchrun` and will output completions for two pre-defined prompts. Using `TARGET_FOLDER` as defined in `download.sh`:
+
+```
+torchrun --nproc_per_node MP example.py --ckpt_dir $TARGET_FOLDER/$MODEL_SIZE --tokenizer_path $TARGET_FOLDER/tokenizer.model --prompt <your prompt> --seed 42
+
 ```
 
 Different models require different MP values:
