@@ -44,7 +44,8 @@ def run(prompts, seed, ckpt):
     s = s.replace('/^\s+|\s+$/g', '');
     print(f'''The text synthesis took {str(round(float(str(datetime.now()-now).strip("00:")),2))} seconds \n
                                                             \n
-{s[2:-3]}''')
+{s[2:-3]} \n
+\n''')
     return f'''The text synthesis took {str(round(float(str(datetime.now()-now).strip("00:")),2))} seconds \n
                                                             \n
 {s[2:-3]}'''
