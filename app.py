@@ -38,16 +38,18 @@ def run(prompts, seed, ckpt):
     now = datetime.now()
     dict1 = {'7B':1,'13B':2,'30B':4, '65B': 8}
     MP = dict1[ckpt]
-    x = subprocess.run(['''torchrun''' ,'''--nproc_per_node''', f'{MP}', '''/notebooks/example.py''', '''--ckpt_dir''', f'/notebooks/LLaMA/{ckpt}', '''--tokenizer_path''', '''/notebooks/LLaMA/tokenizer.model''', '''--seed''', '''12''', '''--prompts''', f'{prompts}', '--seed', f'{seed}'], capture_output=True)
+    x = subprocess.run(['''torchrun''' ,'''--nproc_per_node''', f'{MP}', '''/notebooks/example.py''', '''--ckpt_dir''', f'/../datasets/llama/{ckpt}', '''--tokenizer_path''', '''/../datasets/llama/tokenizer.model''', '''--seed''', '''12''', '''--prompts''', f'{prompts}', '--seed', f'{seed}'], capture_output=True)
     out = str(x.stdout).split(' seconds')[1]
     s = ''.join(out.splitlines())
     s = s.replace('/^\s+|\s+$/g', '');
-    print(f'''The text synthesis took {str(round(float(str(datetime.now()-now).strip("00:")),2))} seconds \n
+    # print(f'''The text synthesis took {str(round(float(str(datetime.now()-now).strip("00:")),2))} seconds \n
+    print(f'''The text synthesis took {round((datetime.now()-now).total_seconds(),2)} seconds \n
                                                             \n
 {s[2:-3]} \n
 \n''')
-    return f'''The text synthesis took {str(round(float(str(datetime.now()-now).strip("00:")),2))} seconds \n
+    return f'''The text synthesis took {round((datetime.now()-now).total_seconds(),2)} seconds \n
                                                             \n
+
 {s[2:-3]}'''
 
 
