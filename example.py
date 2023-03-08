@@ -90,14 +90,21 @@ def main(
 
     generator = load(
         ckpt_dir, tokenizer_path, local_rank, world_size, max_seq_len, max_batch_size
-    )   
+    )
+
+   
     prompts = [prompts]
-  
+
+    
     results = generator.generate(
         prompts, max_gen_len=256, temperature=temperature, top_p=top_p
     )
     
     return results
+
+    for result in results:
+        print(result)
+        print("\n==================================\n")
 
 
 if __name__ == "__main__":

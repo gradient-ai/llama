@@ -1,4 +1,3 @@
-# This program uses code from:
 # Copyright (c) Meta Platforms, Inc. and affiliates.
 # This software may be used and distributed according to the terms of the GNU General Public License version 3.
 
@@ -43,10 +42,12 @@ def run(prompts, seed, ckpt):
     out = str(x.stdout).split(' seconds')[1]
     s = ''.join(out.splitlines())
     s = s.replace('/^\s+|\s+$/g', '');
-    return f'''The text synthesis took {datetime.now()-now} \n
+    print(f'''The text synthesis took {str(round(float(str(datetime.now()-now).strip("00:")),2))} seconds \n
                                                             \n
-
-                                                  {s[2:-3]}'''
+{s[2:-3]}''')
+    return f'''The text synthesis took {str(round(float(str(datetime.now()-now).strip("00:")),2))} seconds \n
+                                                            \n
+{s[2:-3]}'''
 
 
 with gr.Blocks(css="#margin-top {margin-top: 15px} #center {text-align: center;} #description {text-align: center}") as demo:
@@ -56,7 +57,7 @@ with gr.Blocks(css="#margin-top {margin-top: 15px} #center {text-align: center;}
         gr.Markdown(""" To run LLaMA, be sure to select a model size that works for your machine. Single GPUs should always use '7B'.\n Start typing below and then click **Run to generate text** to see the output.""")
     with gr.Row():
         ckpt = gr.Radio(["7B", "13B", "30B", '65B'], label="Checkpoint directory", value = "30B", interactive = True)
-        seed = gr.Slider(label = 'Seed', value = 2222, minimum = 1, maximum = 10000, step =1, interactive = True)
+        seed = gr.Slider(label = 'Seed', value = 8019, minimum = 1, maximum = 10000, step =1, interactive = True)
         prompts = gr.Textbox(label = 'Prompt input', placeholder="What is your prompt?", value = 'my new invention is the', interactive = True)
         
     btn = gr.Button("Run to generate text")
