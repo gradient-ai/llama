@@ -22,7 +22,7 @@ Then in this repository:
 Once your request is approved, you will receive links to download the tokenizer and model files.
 Edit the `download.sh` script with the signed url provided in the email to download the model weights and tokenizer.
 
-### In Gradient
+#### In Gradient
 
 If you are working in a Gradient Notebook, then these models have been uploaded for you, and mounted to your Notebook automatically. The path to the model files from the `notebooks` working directory:
 
@@ -32,7 +32,7 @@ If you are working in a Gradient Notebook, then these models have been uploaded 
 
 ## Inference
 
-## [Gradio App](https://gradio.app/)
+#### [Gradio App](https://gradio.app/)
 
 To run the Gradio Application, run the following in the terminal or using line magic. The MP values will automatically be connected. Note that multi-gpu machines are likely necessary to run 13B (x2), 30B (x4), and 65B (x8) models.
 
@@ -40,7 +40,7 @@ To run the Gradio Application, run the following in the terminal or using line m
 python app.py
 ```
 
-## Original script
+#### Original script
 
 The provided `example.py` can be run on a single or multi-gpu node with `torchrun` and will output completions for two pre-defined prompts. Using `TARGET_FOLDER` as defined in `download.sh`:
 
