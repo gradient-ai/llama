@@ -22,18 +22,20 @@ Then in this repository:
 Once your request is approved, you will receive links to download the tokenizer and model files.
 Edit the `download.sh` script with the signed url provided in the email to download the model weights and tokenizer.
 
+### In Gradient
+
+If you are working in a Gradient Notebook, then these models have been uploaded for you, and mounted to your Notebook automatically. The path to the model files from the `notebooks` working directory:
+
+```
+../datasets/llama/
+```
+
 ## Inference
 
 The provided `example.py` can be run on a single or multi-gpu node with `torchrun` and will output completions for two pre-defined prompts. Using `TARGET_FOLDER` as defined in `download.sh`:
 
 ```
 torchrun --nproc_per_node MP example.py --ckpt_dir $TARGET_FOLDER/$MODEL_SIZE --tokenizer_path $TARGET_FOLDER/tokenizer.model --prompt <your prompt> --seed 42
-```
-
-In Gradient, these models have been uploaded and mounted to your Notebook automatically. The path to the model files from `notebooks` directory:
-
-```
-../datasets/llama/
 ```
 
 ## [Gradio App](https://gradio.app/)
