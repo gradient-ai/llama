@@ -15,8 +15,6 @@ In a conda env with pytorch / cuda available, run:
 pip install -r requirements.txt
 ```
 
-Then in this repository:
-
 ## Download
 
 Once your request is approved, you will receive links to download the tokenizer and model files.
