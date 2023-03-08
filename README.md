@@ -3,6 +3,10 @@
 This repository is intended as a minimal, hackable and readable example to load [LLaMA](https://ai.facebook.com/blog/large-language-model-llama-meta-ai/) ([arXiv](https://arxiv.org/abs/2302.13971v1)) models and run inference.
 In order to download the checkpoints and tokenizer, fill this [google form](https://forms.gle/jk851eBVbX1m5TAv5)
 
+## Run in a Free GPU powered Gradient Notebook
+
+[![Gradient](https://assets.paperspace.io/img/gradient-badge.svg)](https://console.paperspace.com/github/gradient-ai/llama?machine=Free-GPU)
+
 ## Setup
 
 In a conda env with pytorch / cuda available, run:
@@ -10,9 +14,6 @@ In a conda env with pytorch / cuda available, run:
 pip install -r requirements.txt
 ```
 Then in this repository:
-```
-pip install -e .
-```
 
 ## Download
 
@@ -23,7 +24,13 @@ Edit the `download.sh` script with the signed url provided in the email to downl
 
 The provided `example.py` can be run on a single or multi-gpu node with `torchrun` and will output completions for two pre-defined prompts. Using `TARGET_FOLDER` as defined in `download.sh`:
 ```
-torchrun --nproc_per_node MP example.py --ckpt_dir $TARGET_FOLDER/model_size --tokenizer_path $TARGET_FOLDER/tokenizer.model
+torchrun --nproc_per_node MP example.py --ckpt_dir $TARGET_FOLDER/model_size --tokenizer_path $TARGET_FOLDER/tokenizer.model --prompt <your prompt> --seed 42
+```
+## [Gradio App](https://gradio.app/)
+
+To run the Gradio Application, run the following in the terminal or using line magic. The MP values will automatically be connected. Note that multi-gpu machines are likely necessary to run 13B (x2), 30B (x4), and 65B (x8) models. 
+```
+python app.py
 ```
 
 Different models require different MP values:
