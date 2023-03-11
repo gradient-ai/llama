@@ -81,8 +81,8 @@ def main(
     prompts: str,
     temperature: float = 0.8,
     top_p: float = 0.95,
-    max_seq_len: int = 512,
-    max_batch_size: int = 16):
+    max_seq_len: int = 128,
+    max_batch_size: int = 2):
 
     local_rank, world_size = setup_model_parallel(seed)
     if local_rank > 0:
@@ -97,7 +97,7 @@ def main(
 
     
     results = generator.generate(
-        prompts, max_gen_len=256, temperature=temperature, top_p=top_p
+        prompts, max_gen_len=128, temperature=temperature, top_p=top_p
     )
     
     return results
