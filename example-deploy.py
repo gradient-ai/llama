@@ -89,7 +89,7 @@ def main(
         sys.stdout = open(os.devnull, "w")
 
     generator = load(
-        local_rank, world_size, max_seq_len, max_batch_size, ckpt_dir = 'consolidated.00.pth', tokenizer_path = 'tokenizer.model'
+        ckpt_dir, tokenizer_path, local_rank, world_size, max_seq_len, max_batch_size
     )
 
    

@@ -38,20 +38,9 @@ def run(prompts, seed, ckpt):
     now = datetime.now()
     dict1 = {'7B':1,'13B':2,'30B':4, '65B': 8}
     MP = dict1[ckpt]
-    x = subprocess.run(['''torchrun''' ,'''--nproc_per_node''', '1', '''/notebooks/example_deploy.py''', '''--ckpt_dir''', f'consolidated.00.pth', '''--tokenizer_path''', '''tokenizer.model''', '''--seed''', '''12''', '''--prompts''', f'{prompts}', '--seed', f'{seed}'], capture_output=True)
+    x = subprocess.run(['''torchrun''' ,'''--nproc_per_node''', '1', '''example_deploy.py''', '''--ckpt_dir''', 'consolidated.00.pth', '''--tokenizer_path''', '''tokenizer.model''', '''--seed''', '''12''', '''--prompts''', f'{prompts}', '--seed', f'{seed}'], capture_output=True)
     return str(x)
-    out = str(x.stdout).split(' seconds')[1]
-    s = ''.join(out.splitlines())
-    s = s.replace('/^\s+|\s+$/g', '');
-    # print(f'''The text synthesis took {str(round(float(str(datetime.now()-now).strip("00:")),2))} seconds \n
-    print(f'''The text synthesis took {round((datetime.now()-now).total_seconds(),2)} seconds \n
-                                                            \n
-{s[2:-3]} \n
-\n''')
-    return f'''The text synthesis took {round((datetime.now()-now).total_seconds(),2)} seconds \n
-                                                            \n
-
-{s[2:-3]}'''
+    
 
 
 with gr.Blocks(css="#margin-top {margin-top: 15px} #center {text-align: center;} #description {text-align: center}") as demo:
