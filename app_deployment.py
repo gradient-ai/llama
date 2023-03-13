@@ -39,7 +39,7 @@ def run(prompts, seed, ckpt):
     dict1 = {'7B':1,'13B':2,'30B':4, '65B': 8}
     MP = dict1[ckpt]
     x = subprocess.run(['''torchrun''' ,'''--nproc_per_node''', f'{MP}', '''/notebooks/example_deploy.py''', '''--ckpt_dir''', f'/../datasets/llama/{ckpt}', '''--tokenizer_path''', '''/../datasets/llama/tokenizer.model''', '''--seed''', '''12''', '''--prompts''', f'{prompts}', '--seed', f'{seed}'], capture_output=True)
-    return x
+    return str(x)
     out = str(x.stdout).split(' seconds')[1]
     s = ''.join(out.splitlines())
     s = s.replace('/^\s+|\s+$/g', '');
