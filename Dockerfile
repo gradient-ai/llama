@@ -6,6 +6,6 @@ RUN apt-get update \
 RUN apt-get update && apt-get install -y git
 RUN git clone https://github.com/gradient-ai/llama
 WORKDIR llama/
-RUN pip install -r llama/requirements.txt
+RUN pip install -r requirements.txt
 
 COPY 7B/* ./ 
