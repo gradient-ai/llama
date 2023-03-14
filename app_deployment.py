@@ -38,7 +38,7 @@ def run(prompts, seed, ckpt):
     now = datetime.now()
     dict1 = {'7B':1,'13B':2,'30B':4, '65B': 8}
     MP = dict1[ckpt]
-    x = subprocess.run(['''torchrun''' ,'''--nproc_per_node''', '1', '''example_deploy.py''', '''--ckpt_dir''', 'consolidated.00.pth', '''--tokenizer_path''', '''tokenizer.model''', '''--seed''', '''12''', '''--prompts''', f'{prompts}', '--seed', f'{seed}'], capture_output=True)
+    x = subprocess.run(['''torchrun''' ,'''--nproc_per_node''', '1', '''example-deploy.py''', '''--ckpt_dir''', 'consolidated.00.pth', '''--tokenizer_path''', '''tokenizer.model''', '''--seed''', '''12''', '''--prompts''', f'{prompts}', '--seed', f'{seed}'], capture_output=True)
     return str(x)
     
 
